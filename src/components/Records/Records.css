@@ -1,0 +1,23 @@
+.record-container{
+
+    display: flex;
+    flex-direction: column;
+
+}
+.record-template{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 500px;
+}
+.far{
+    font-size: 25px;
+    cursor: pointer;
+}
+.fa-trash-alt:before {
+    color: red;
+}
+.fa-pause-circle:before {
+    color: orange;
+}

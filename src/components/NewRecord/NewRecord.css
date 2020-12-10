@@ -19,5 +19,10 @@
 }
 .submit-btn{
     cursor: pointer;
-    margin-right: 5px;
+    margin-right: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 40px;
+    border: 1px solid black;
+    outline: none;
 }
