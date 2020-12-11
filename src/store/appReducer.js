@@ -1,4 +1,4 @@
-import {RUN_TIMER, SAVE_VALUE, STOP_TIMER} from "./actionTypes";
+import {RUN_TIMER, SAVE_VALUE, STOP_TIMER, REMOVE_RECORD} from "./actionTypes";
 
 const initialState = {
     isTimer: false,
@@ -12,6 +12,8 @@ export const appReducer = (state = initialState, action) => {
             return initialState
         case SAVE_VALUE:
             return {...state, inputValue: [...state.inputValue, action.payload]}
+        case REMOVE_RECORD:
+            return state.inputValue.filter(record => record.index !== action.payload.index)
         default:
             return state
     }
