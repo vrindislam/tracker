@@ -7,23 +7,30 @@ import {removeRecord} from "../../store/appActions";
 const Records = () => {
     const dispatch = useDispatch();
     const listItem = useSelector(state => {
-        return state.inputValue.reverse()
+        return state.tracks
     })
-    const listLength = useSelector(state => {return state.inputValue})
-    console.log(listLength)
-
+    console.log(listItem)
 
 
     return (
         <section className='record-container'>
-            {!!listLength.length ?  listItem.map((el, index) => (
-            <RecordTemplate
-                name={el}
-                key={index}
-                index={el.index}
-                deleteRecord={() => dispatch(removeRecord(el.index))}
-            />
-            )): <p>add a track,pls</p>}
+            {!!listItem.length ?
+                listItem.map((el, index) => (
+                    <RecordTemplate
+                        name={el}
+                        key={index}
+                        index={index}
+                        actions={<>
+                            <div className='record-pause'><i className="far fa-pause-circle"></i></div>
+                            <div className='record-delete'
+                                 onClick={() => dispatch(removeRecord(el.index))}>
+                                <i className="far fa-trash-alt"></i>
+                            </div>
+                        </>}
+
+                    />
+                ))
+                : <p>add a track,pls</p>}
         </section>
     );
 };

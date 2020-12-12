@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './NewRecord.css'
 import {runTimer, saveInputValue} from "../../store/appActions";
 import {useDispatch} from "react-redux";
@@ -6,14 +6,18 @@ import {useDispatch} from "react-redux";
 
 const NewRecord = () => {
     const dispatch = useDispatch();
+    const [inputValue, setInputValue] = useState('')
 
     const handleSaveInputValue = (event) => {
         event.preventDefault();
-        return event.target.input.value;
+        let noInputValue = event.target.input.value;
+        if (noInputValue === '') {
+            noInputValue = new Date().toLocaleDateString()
+        }
+        return noInputValue;
     }
     const clearInput = (event) => {
-        const emptyInput = event.target.input.value = ''
-        return emptyInput
+        setInputValue(event.target.input.value = inputValue)
     }
 
     return (
