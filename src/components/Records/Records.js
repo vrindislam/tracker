@@ -9,6 +9,7 @@ const Records = () => {
     const listItem = useSelector(state => {
         return state.records
     })
+    console.log(listItem)
 
 
     return (
@@ -22,7 +23,7 @@ const Records = () => {
                         actions={<>
                             <div className='record-pause'><i className="far fa-pause-circle"></i></div>
                             <div className='record-delete'
-                                 onClick={() => dispatch(removeRecord(el))}>
+                                 onClick={() => dispatch(removeRecord(index))}>
                                 <i className="far fa-trash-alt"></i>
                             </div>
                         </>}

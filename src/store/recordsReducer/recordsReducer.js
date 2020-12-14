@@ -6,7 +6,7 @@ export const recordsReducer = (state = initialState, action) => {
         case SAVE_VALUE:
             return [...state, action.payload]
         case REMOVE_RECORD:
-            return  [...state.filter(record => record !== action.payload.index)]
+            return  [...state.filter((e, index) => index !== action.payload.index)]
         default:
             return state
     }
