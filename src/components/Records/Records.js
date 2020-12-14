@@ -2,14 +2,13 @@ import React from 'react';
 import './Records.css'
 import {useDispatch, useSelector} from "react-redux";
 import RecordTemplate from "./RecordTemplate";
-import {removeRecord} from "../../store/appActions";
+import {removeRecord} from "../../store/recordsReducer/recordsActions";
 
 const Records = () => {
     const dispatch = useDispatch();
     const listItem = useSelector(state => {
-        return state.tracks
+        return state.records
     })
-    console.log(listItem)
 
 
     return (
@@ -23,7 +22,7 @@ const Records = () => {
                         actions={<>
                             <div className='record-pause'><i className="far fa-pause-circle"></i></div>
                             <div className='record-delete'
-                                 onClick={() => dispatch(removeRecord(el.index))}>
+                                 onClick={() => dispatch(removeRecord(el))}>
                                 <i className="far fa-trash-alt"></i>
                             </div>
                         </>}

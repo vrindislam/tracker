@@ -1,8 +1,6 @@
 import React from 'react';
 
 const RecordTemplate = ({name,actions}) => {
-    let date = new Date()
-    console.log(date)
 
     return (
         <div className='record-template'>

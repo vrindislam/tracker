@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './NewRecord.css'
-import {runTimer, saveInputValue} from "../../store/appActions";
+import {runTimer} from "../../store/timerReducer/timerActions";
+import {saveInputValue} from "../../store/recordsReducer/recordsActions";
 import {useDispatch} from "react-redux";
 
 
