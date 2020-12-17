@@ -1,15 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Records.css'
 import {useDispatch, useSelector} from "react-redux";
 import RecordTemplate from "./RecordTemplate";
 import {removeRecord} from "../../store/recordsReducer/recordsActions";
+import {runTimer, stopTimer} from "../../store/timerReducer/timerActions";
 
 const Records = () => {
     const dispatch = useDispatch();
     const listItem = useSelector(state => {
         return state.records
+    });
+    const isRunning = useSelector(state => {
+        return state.timer.isRunning
+    });
+    const startDate = useSelector(state => {
+        return state.timer.startDate
     })
-    console.log(listItem)
+
+    const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+        let interval = null;
+        if (isRunning) {
+            interval = setInterval(() => {
+                setTimer(timer => timer + 1)
+            }, 1000);
+        } else if (!isRunning && timer !== 0) {
+            clearInterval(interval)
+        }
+        return () => clearInterval(interval)
+
+    }, [isRunning, timer]);
+
+
 
 
     return (
@@ -20,10 +43,27 @@ const Records = () => {
                         name={el}
                         key={index}
                         index={index}
+                        timer={timer}
                         actions={<>
-                            <div className='record-pause'><i className="far fa-pause-circle"></i></div>
+                            {isRunning ?
+                                <div className='record-pause'
+                                     onClick={() => {
+                                         dispatch(stopTimer())
+                                     }}>
+                                    <i className="far fa-pause-circle"></i></div>
+                                : <div className='record-pause'
+                                       onClick={() => {
+
+                                           dispatch(runTimer(index));
+                                       }}>
+
+                                    <i className="far fa-play-circle"></i></div>}
+
                             <div className='record-delete'
-                                 onClick={() => dispatch(removeRecord(index))}>
+                                 onClick={() => {
+                                     dispatch(removeRecord(index));
+                                     setTimer(0)
+                                 }}>
                                 <i className="far fa-trash-alt"></i>
                             </div>
                         </>}

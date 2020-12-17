@@ -1,15 +1,26 @@
 import {RUN_TIMER, STOP_TIMER} from "../actionTypes";
 
 const initialState = {
-    isTimer: false,
-    time: 0
+    isRunning: false,
+    timerId: null,
+    startDate: null,
 }
 export const timerReducer = (state = initialState, action) => {
-    switch (action.type){
+    switch (action.type) {
         case RUN_TIMER:
-            return {...state, isTimer: true, time: action.payload}
+            return {
+                ...state,
+                isRunning: true,
+                startDate: +new Date(),
+                timerId: action.payload.timerId
+            }
         case STOP_TIMER:
-            return {...state, isTimer: initialState}
+            return {
+                ...state,
+                isRunning: !state,
+                startDate: null,
+                timerId: null
+            }
         default:
             return state
     }

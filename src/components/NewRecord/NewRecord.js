@@ -23,7 +23,7 @@ const NewRecord = () => {
 
     return (
         <form className='search-container' onSubmit={(event) => {
-            dispatch(runTimer())
+
             dispatch(saveInputValue(handleSaveInputValue(event)))
             clearInput(event)
         }}>
