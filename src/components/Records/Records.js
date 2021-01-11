@@ -7,15 +7,8 @@ import {runTimer, stopTimer} from "../../store/timerReducer/timerActions";
 
 const Records = () => {
     const dispatch = useDispatch();
-    const listItem = useSelector(state => {
-        return state.records
-    });
-    const isRunning = useSelector(state => {
-        return state.timer.isRunning
-    });
-    const startDate = useSelector(state => {
-        return state.timer.startDate
-    })
+    const listItem = useSelector(state => state.records);
+    const isRunning = useSelector(state => state.timer.isRunning);
 
     const [timer, setTimer] = useState(0);
 
@@ -40,6 +33,7 @@ const Records = () => {
             {!!listItem.length ?
                 listItem.map((el, index) => (
                     <RecordTemplate
+                        style={isRunning ? 'record-template-chosen' : 'record-template'}
                         name={el}
                         key={index}
                         index={index}
