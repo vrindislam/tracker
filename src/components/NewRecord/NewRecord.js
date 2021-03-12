@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './NewRecord.css'
-import {saveInputValue} from "../../store/recordsReducer/recordsActions";
-import {useDispatch} from "react-redux";
+import { saveInputValue } from "../../store/recordsReducer/recordsActions";
+import { useDispatch } from "react-redux";
 
 
 const NewRecord = () => {
@@ -29,6 +29,7 @@ const NewRecord = () => {
             <input name='input' className='record-field'
                    placeholder='Enter tracker name' type="search"/>
             <button className='submit-btn' type='submit'>submit</button>
+            
         </form>
     );
 };
